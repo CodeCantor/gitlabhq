@@ -167,3 +167,12 @@ end
 group :production do
   gem "gitlab_meta", '4.0'
 end
+
+gem 'cap_recipes', :git => 'git@github.com:CodeCantor/cap_recipes.git', group: :development
+
+group :development do
+  gem "capistrano"
+  gem "capistrano-chef"
+  gem "rvm-capistrano"
+  gem "capistrano-ext"
+end

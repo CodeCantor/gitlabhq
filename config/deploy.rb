@@ -51,6 +51,21 @@ namespace :newrelic do
   end  
   after "deploy:setup", "newrelic:setup"
 end
+
+namespace :unicorn do
+  desc "Create symlink for newrelic config"
+  task :symlink do
+    run "ln -nfs #{shared_path}/config/unicorn.yml #{current_path}/config/unicorn.yml"
+  end
+  after "deploy:finalize_update", "unicorn:symlink"
+
+  desc "Upload twitter_config"
+  task :setup do
+    upload "config/unicorn.yml", "#{shared_path}/config/unicorn.yml", via: :scp
+  end  
+  after "deploy:setup", "unicorn:setup"
+end
+
 def run_rake(cmd)
   run "cd #{current_path}; #{rake} #{cmd}"
 end

@@ -176,3 +176,5 @@ group :development do
   gem "rvm-capistrano"
   gem "capistrano-ext"
 end
+
+gem 'newrelic_rpm'
